@@ -5,6 +5,13 @@ const routes = require('./routes');
 
 const configs =  require('./config');
 
+//
+// const db = require('./config/database');
+
+// db.authenticate()
+//     .then( () => console.log('Database Conectada'))
+//     .catch(error => console.log(error))
+
 //configurar el servidor express
 const app = express();
 
