@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+//
+const travelModel = require('../models/Travels');
+
+
 // LA FORMA DE BUSCAR LAS RUTAS
 module.exports = function(){
     // configuramos todas las rutas necesarias
@@ -18,9 +22,12 @@ module.exports = function(){
     })
 
     router.get('/viajes', (req, res) => {
-        res.render('viajes', {
-            pagina: 'Sobre Viajes'
-        }); // aqui llamamos la carpeta donde se encuentra la vista
+        travelModel.findAll()
+            .then( travels => res.render('viajes', {
+                     pagina: 'Sobre Viajes',
+                     viajes: travels
+                 }))
+                 .catch(error => console.log(error))
     })
 
     router.get('/testimoniales', (req, res) => {
