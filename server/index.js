@@ -1,6 +1,7 @@
 // importar el servidor express
 const express = require('express');
 const path =  require('path');
+const bodyParser = require('body-parser');
 const routes = require('./routes');
 
 const configs =  require('./config');
@@ -38,6 +39,9 @@ app.use( (req, res, next) => {
     res.locals.fechaActual = fecha.getFullYear();
     return next();
 })
+
+// ejecutamos el body parser para recibir informacion de form
+app.use(bodyParser.urlencoded({extended: true}) );
 
 //cargamos todas las rutas necesarias
 app.use('/', routes());

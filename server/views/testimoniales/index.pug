@@ -4,32 +4,36 @@ block contenido
     main.container.mt-5
         h1.text-center.mb-5 #{pagina}
         .row
-            .col-md-4
-                .card
-                    .card-title
-                    h1 #{testimonio.title}                
-            .col-md-4
-                .card
-                    .card-title
-                    h1 titulo
-            .col-md-4
-                .card
-                    .card-title
-                    h1 titulo
+        .row.py-3
+            each testi in testimonial
+                .col-md-6.col-lg-4
+                    .card
+                        .card-body
+                            h2=testi.name
+                            p 
+                                i.fas.fa-calendar-alt 
+                                | #{testi.mail}
+                            p
+                                i.fas.fa-at
+                                | #{testi.message}             
         .row
             .col-md-12
+                h2.text-center Agrega un Testimonial
+                if(errores)
+                    each error in errores
+                        .alert.alert-danger.text-center=error.mensaje
 
                 .row.justify-content-center
                     .col-md-8
-                        form
+                        form(action="/testimoniales", method="POST")
                             .form-group
-                                label(for="nombre") Nombre
-                                input(id="nombre", name="nombre", class="form-control", placeholder="Su nombre",type="text")
+                                label(for="name") Nombre
+                                input(id="name", name="name", class="form-control", placeholder="Su nombre",type="text" value=name)
                             .form-group
-                                label(for="correo") Correo Electronico
-                                input(id="correo", name="correo", class="form-control", placeholder="Su correo",type="email")       
+                                label(for="mail") Correo Electronico
+                                input(id="mail", name="mail", class="form-control", placeholder="Su correo",type="email" value=mail)       
                             .form-group
-                                label(for="mensaje") mensaje
-                                textarea#mensaje(name="mensaje", cols="30", rows="5", class="form-control")    
+                                label(for="message") mensaje
+                                textarea#message(name="message", cols="30", rows="5", class="form-control")=message    
                             .form-group
                                 input(type="submit", value="agregar" class="btn btn-success btn-block")                  
