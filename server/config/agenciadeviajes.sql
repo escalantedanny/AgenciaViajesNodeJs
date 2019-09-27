@@ -1,41 +1,63 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : equipoLocal
  Source Server Type    : MySQL
- Source Server Version : 50719
+ Source Server Version : 50637
  Source Host           : localhost:3306
  Source Schema         : agenciadeviajes
 
  Target Server Type    : MySQL
- Target Server Version : 50719
+ Target Server Version : 50637
  File Encoding         : 65001
 
- Date: 26/09/2019 17:59:57
+ Date: 27/09/2019 00:17:29
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
+-- Table structure for testimonials
+-- ----------------------------
+DROP TABLE IF EXISTS `testimonials`;
+CREATE TABLE `testimonials` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `message` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of testimonials
+-- ----------------------------
+BEGIN;
+INSERT INTO `testimonials` VALUES (0, 'Enrique Ponce', 'enrique@email.com', 'este es una verdadera pagina de venta de boletos');
+INSERT INTO `testimonials` VALUES (1, 'Enrique Ponce', 'enrique@email.com', 'este es una verdadera pagina de venta de boletos');
+INSERT INTO `testimonials` VALUES (2, 'Pedro Pablo', 'enrique@email.com', 'este es una verdadera pagina de venta de boletos');
+COMMIT;
+
+-- ----------------------------
 -- Table structure for travels
 -- ----------------------------
 DROP TABLE IF EXISTS `travels`;
-CREATE TABLE `travels`  (
+CREATE TABLE `travels` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `description` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `image` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `price` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `free` varchar(3) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `departure_date` date NULL DEFAULT NULL,
-  `arrival_date` date NULL DEFAULT NULL,
+  `title` varchar(60) DEFAULT NULL,
+  `description` longtext,
+  `image` varchar(50) DEFAULT NULL,
+  `price` varchar(10) DEFAULT NULL,
+  `free` varchar(3) DEFAULT NULL,
+  `departure_date` date DEFAULT NULL,
+  `arrival_date` date DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of travels
 -- ----------------------------
+BEGIN;
 INSERT INTO `travels` VALUES (1, 'Viaje a Venezuela', 'Hermoso sitio paradisiaco, con las mejores playas del planeta, gente cordial', 'roma', '350', '32', '2019-09-01', '2019-09-30');
 INSERT INTO `travels` VALUES (2, 'Viaje a Chile', 'Hermoso pais, lugares sorprendentes', 'londres', '340', '261', '2019-10-01', '2019-10-31');
 INSERT INTO `travels` VALUES (3, 'Viaje a Mexico', 'Hermoso Pais, Playas hermosas, excelentes lugares ansestrales', 'roma', '550', '19', '2019-11-01', '2019-11-30');
@@ -60,5 +82,6 @@ INSERT INTO `travels` VALUES (21, 'Viaje a Grecia', 'Hermoso Pais, Playas hermos
 INSERT INTO `travels` VALUES (22, 'Viaje a Japon', 'Hermoso sitio paradisiaco, con las mejores playas del planeta, gente cordial', 'rio', '999', '76', '2019-09-01', '2019-09-30');
 INSERT INTO `travels` VALUES (23, 'Viaje a Rusia', 'Hermoso pais, lugares sorprendentes', 'roma', '658', '65', '2019-10-01', '2019-10-31');
 INSERT INTO `travels` VALUES (24, 'Viaje a Corea', 'Hermoso Pais, Playas hermosas, excelentes lugares ansestrales', 'rio', '950', '54', '2019-11-01', '2019-11-30');
+COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

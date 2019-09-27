@@ -3,6 +3,7 @@ const router = express.Router();
 
 // instanciamos el modelo para ser utilizado en las vistas
 const travelModel = require('../models/Travels');
+const testimonialModel = require('../models/Testimonials');
 
 // LA FORMA DE BUSCAR LAS RUTAS
 module.exports = function() {
@@ -39,9 +40,12 @@ module.exports = function() {
     })
 
     router.get('/testimoniales', (req, res) => {
-        res.render('testimoniales', {
-            pagina: 'Sobre Testimoniales'
-        }); // aqui llamamos la carpeta donde se encuentra la vista
+        testimonialModel.findAll()
+            .then(testimonials => res.render('testimoniales', { // aqui llamamos la carpeta donde se encuentra la vista
+                pagina: 'Sobre Testimoniales',
+                testimonio: testimonials
+            }))
+            .catch(error => console.log(error))
     })
 
     // devolvemos la ruta

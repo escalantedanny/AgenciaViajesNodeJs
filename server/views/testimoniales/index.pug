@@ -7,7 +7,7 @@ block contenido
             .col-md-4
                 .card
                     .card-title
-                    h1 titulo                
+                    h1 #{testimonio.title}                
             .col-md-4
                 .card
                     .card-title
@@ -32,4 +32,4 @@ block contenido
                                 label(for="mensaje") mensaje
                                 textarea#mensaje(name="mensaje", cols="30", rows="5", class="form-control")    
                             .form-group
-                                input(type="button", value="enviar" class="btn btn-success btn-block")                  
+                                input(type="submit", value="agregar" class="btn btn-success btn-block")                  
