@@ -5,6 +5,9 @@ const router = express.Router();
 const travelModel = require('../models/Travels');
 const testimonialModel = require('../models/Testimonials');
 
+// importamos el controller
+const nosotrosController = require('../controller/nosotrosController');
+
 // LA FORMA DE BUSCAR LAS RUTAS
 module.exports = function() {
     // configuramos todas las rutas necesarias
@@ -36,11 +39,7 @@ module.exports = function() {
 
     })
 
-    router.get('/nosotros', (req, res) => {
-        res.render('nosotros', {
-            pagina: 'Sobre Nosotros'
-        }); // aqui llamamos la carpeta donde se encuentra la vista
-    })
+    router.get('/nosotros', nosotrosController.infoNosotros);
 
     router.get('/viajes', (req, res) => {
         travelModel.findAll()
