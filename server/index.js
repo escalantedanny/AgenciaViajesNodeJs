@@ -35,8 +35,10 @@ app.locals.titulo = config.nombresitio;
 //muestra el año actual
 app.use( (req, res, next) => {
     //creamos las variables necesarias para los templates
+    // muestra actual y genera laruta donde se encuentra
     const fecha = new Date();
     res.locals.fechaActual = fecha.getFullYear();
+    res.locals.ruta = req.path;
     return next();
 })
 
