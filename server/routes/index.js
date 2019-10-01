@@ -11,7 +11,7 @@ module.exports = function() {
 
     router.get('/', (req, res) => {
         res.render('index', {
-            pagina: 'Sobre Inicio'
+            clase: 'home'
         }); // aqui llamamos la carpeta donde se encuentra la vista
     })
 
@@ -50,32 +50,33 @@ module.exports = function() {
 
     router.post('/testimoniales', (req, res) => {
         // validamos que todos los campos esten llenos
-        let {name, mail, message} = req.body;
+
+        let { title, email, message } = req.body;
 
         let errores = [];
-        if(!name){
-            errores.push({'mensaje': 'Agrega tu nombre'})
-        }else if(!mail){
-            errores.push({'mensaje': 'Agrega tu Correo'})
-        }else if(!message){
-            errores.push({'mensaje': 'Agrega un comentario'})
+        if (!title) {
+            errores.push({ 'mensaje': 'Agrega tu nombre' })
+        } else if (!email) {
+            errores.push({ 'mensaje': 'Agrega tu Correo' })
+        } else if (!message) {
+            errores.push({ 'mensaje': 'Agrega un comentario' })
         }
         //revisar por errores
-        if(errores.length > 0){
+        if (errores.length > 0) {
             // muestra la vista con errores
             res.render('testimoniales', {
                 errores,
-                name,
-                mail,
+                title,
+                email,
                 message
             })
         } else {
             // almacenaq en la base de datos
             testimonialModel.create({
-                name,
-                mail,
+                title,
+                email,
                 message
-            }).then( testimonial => res.redirect('testimoniales') )
+            }).then(testimonial => res.redirect('testimoniales'))
         }
     })
 
