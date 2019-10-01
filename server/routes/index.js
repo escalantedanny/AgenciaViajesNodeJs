@@ -10,9 +10,30 @@ module.exports = function() {
     // configuramos todas las rutas necesarias
 
     router.get('/', (req, res) => {
-        res.render('index', {
-            clase: 'home'
-        }); // aqui llamamos la carpeta donde se encuentra la vista
+        const promises = [];
+
+        promises.push(
+            travelModel.findAll({
+                limit: 3
+            })
+        )
+
+        promises.push(
+            testimonialModel.findAll({
+                limit: 3
+            })
+        )
+
+        const resultado = Promise.all(promises);
+
+        resultado.then(resultado => res.render('index', {
+            clase: 'home',
+            pagina: 'Sobre Viajes',
+            viajes: resultado[0],
+            testimonial: resultado[1]
+        }))
+        .catch(error => console.log(error))
+
     })
 
     router.get('/nosotros', (req, res) => {

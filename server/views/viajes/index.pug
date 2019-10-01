@@ -3,18 +3,4 @@ extends ../layout/index
 block contenido
     main.container.mt-5
         h1.text-center.mb-5 #{pagina}
-        .row.proximos-viajes
-            each viaje in viajes
-                .col-md-6.col-lg-4
-                    .card
-                        img(src=`img/destinos_${viaje.image}.jpg`, class="img-fluid")
-                        .card-body
-                            h2=viaje.title
-                            p 
-                                i.fas.fa-calendar-alt 
-                                | #{viaje.departure_date} - #{viaje.arrival_date}
-                            p
-                                i.fas.fa-dollar-sign 
-                                | #{viaje.price}            
-                            p=viaje.description.substr(0,100)       
-                            a(href=`viajes/${viaje.id}`, class="btn btn-success btn-blick") Más Informacion                                             
+        include ../layout/includes/partials/viajes                                 
