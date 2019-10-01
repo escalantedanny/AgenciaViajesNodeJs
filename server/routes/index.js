@@ -7,37 +7,13 @@ const testimonialModel = require('../models/Testimonials');
 
 // importamos el controller
 const nosotrosController = require('../controller/nosotrosController');
+const homeController = require('../controller/homeController');
 
 // LA FORMA DE BUSCAR LAS RUTAS
 module.exports = function() {
     // configuramos todas las rutas necesarias
 
-    router.get('/', (req, res) => {
-        const promises = [];
-
-        promises.push(
-            travelModel.findAll({
-                limit: 3
-            })
-        )
-
-        promises.push(
-            testimonialModel.findAll({
-                limit: 3
-            })
-        )
-
-        const resultado = Promise.all(promises);
-
-        resultado.then(resultado => res.render('index', {
-            clase: 'home',
-            pagina: 'Sobre Viajes',
-            viajes: resultado[0],
-            testimonial: resultado[1]
-        }))
-        .catch(error => console.log(error))
-
-    })
+    router.get('/', homeController.infoHome);
 
     router.get('/nosotros', nosotrosController.infoNosotros);
 
