@@ -1,3 +1,6 @@
+const travelModel = require('../models/Travels');
+const testimonialModel = require('../models/Testimonials');
+
 exports.infoHome = (req, res) => {
     const promises = [];
 
