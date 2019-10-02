@@ -1,3 +1,6 @@
 node_modules
+var.env
+.DS_Store
+/server/config/agenciadeviajes.sql
 *.xml
 *.iml
