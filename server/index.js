@@ -1,17 +1,18 @@
 // importar el servidor express
 const express = require('express');
-const path =  require('path');
+const path = require('path');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 
-const configs =  require('./config');
+const configs = require('./config');
 
-//
-// const db = require('./config/database');
+require('dotenv').config({ path: 'var.env' });
 
-// db.authenticate()
-//     .then( () => console.log('Database Conectada'))
-//     .catch(error => console.log(error))
+const db = require('./config/database');
+
+db.authenticate()
+    .then(() => console.log('Database Conectada'))
+    .catch(error => console.log(error))
 
 //configurar el servidor express
 const app = express();
@@ -33,7 +34,7 @@ const config = configs[app.get('env')];
 app.locals.titulo = config.nombresitio;
 
 //muestra el año actual
-app.use( (req, res, next) => {
+app.use((req, res, next) => {
     //creamos las variables necesarias para los templates
     // muestra actual y genera laruta donde se encuentra
     const fecha = new Date();
@@ -43,10 +44,16 @@ app.use( (req, res, next) => {
 })
 
 // ejecutamos el body parser para recibir informacion de form
-app.use(bodyParser.urlencoded({extended: true}) );
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //cargamos todas las rutas necesarias
 app.use('/', routes());
 
+// puerto y host para la app
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 3000;
+
 //configuramos el puerto
-app.listen(3000);
+app.listen(port, host, () => {
+    console.log('El servidor esta funcionando');
+});
